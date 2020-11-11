@@ -8,10 +8,10 @@
     },
     "files": [
         "README.md",
-        "main.ts",
+        "hsbleservice.ts",
         "HSMicroBitUARTService.cpp",
         "HSMicroBitUARTService.h",
-        "hsble.cpp",
+        "hsbleservice.cpp",
         "shims.d.ts",
         "enums.d.ts"
     ],
