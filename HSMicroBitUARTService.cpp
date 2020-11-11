@@ -31,6 +31,8 @@ DEALINGS IN THE SOFTWARE.
 
 //#include "ble/UUID.h"
 
+#include "MicroBit.h"
+#include "pxt.h"
 #include "ExternalEvents.h"
 #include "HSMicroBitUARTService.h"
 #include "MicroBitFiber.h"
@@ -95,13 +97,16 @@ HSMicroBitUARTService::HSMicroBitUARTService(BLEDevice &_ble, uint8_t rxBufferSi
     txBufferTail = 0;
     this->txBufferSize = txBufferSize;
 
-    GattCharacteristic rxCharacteristic(UARTServiceRXCharacteristicUUID, rxBuffer, 1, rxBufferSize, GattCharacteristic::BLE_GATT_CHAR_PROPERTIES_WRITE | GattCharacteristic::BLE_GATT_CHAR_PROPERTIES_WRITE_WITHOUT_RESPONSE);
+    GattCharacteristic rxCharacteristic(UARTServiceRXCharacteristicUUID, rxBuffer, 0, rxBufferSize, GattCharacteristic::BLE_GATT_CHAR_PROPERTIES_WRITE | GattCharacteristic::BLE_GATT_CHAR_PROPERTIES_WRITE_WITHOUT_RESPONSE);
 
-    txCharacteristic = new GattCharacteristic(UARTServiceTXCharacteristicUUID, txBuffer, 1, txBufferSize, GattCharacteristic::BLE_GATT_CHAR_PROPERTIES_READ
+    txCharacteristic = new GattCharacteristic(UARTServiceTXCharacteristicUUID, txBuffer, 0, txBufferSize, GattCharacteristic::BLE_GATT_CHAR_PROPERTIES_READ
         | GattCharacteristic::BLE_GATT_CHAR_PROPERTIES_NOTIFY);
 
     GattCharacteristic *charTable[] = {txCharacteristic, &rxCharacteristic};
 
+    rxCharacteristic.requireSecurity(SecurityManager::MICROBIT_BLE_SECURITY_LEVEL);
+    txCharacteristic->requireSecurity(SecurityManager::MICROBIT_BLE_SECURITY_LEVEL);
+	
     GattService uartService(UARTServiceUUID, charTable, sizeof(charTable) / sizeof(GattCharacteristic *));
 
     _ble.addService(uartService);
@@ -111,7 +116,7 @@ HSMicroBitUARTService::HSMicroBitUARTService(BLEDevice &_ble, uint8_t rxBufferSi
 
     _ble.gattServer().onDataWritten(this, &HSMicroBitUARTService::onDataWritten);
 	_ble.gattServer().onDataRead(this, &HSMicroBitUARTService::onDataRead);
-    _ble.gattServer().onConfirmationReceived(hson_confirmation);
+    _ble.gattServer().onConfirmationReceived(on_confirmation);
 }
 
 /**
