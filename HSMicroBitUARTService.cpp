@@ -116,7 +116,7 @@ HSMicroBitUARTService::HSMicroBitUARTService(BLEDevice &_ble, uint8_t rxBufferSi
 
     _ble.gattServer().onDataWritten(this, &HSMicroBitUARTService::onDataWritten);
 	_ble.gattServer().onDataRead(this, &HSMicroBitUARTService::onDataRead);
-    _ble.gattServer().onConfirmationReceived(on_confirmation);
+    _ble.gattServer().onConfirmationReceived(hson_confirmation);
 }
 
 /**
