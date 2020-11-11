@@ -9,7 +9,7 @@ namespace hsbleservice
     *  Writes to the Bluetooth UART service buffer. From there the data is transmitted over Bluetooth to a connected device.
     */
     //% blockId=bleWriteString block="ble write string %data" blockGap=8
-    //% parts="hsbleservice" shim=hsbleservice::uartWriteString
+    //% parts="hsbleservice" shim=hsbleservice::bleWriteString
     export function bleWriteString(data: string): void {
         console.log(data)
     }

@@ -32,7 +32,7 @@ namespace hsbleservice {
     }    
 
     //%
-    String belReadUntil(String del) {
+    String bleReadUntil(String del) {
         startBLEService();
         return PSTR(uart->readUntil(MSTR(del)));
     }    
