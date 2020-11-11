@@ -5,32 +5,33 @@
      * Support for additional Bluetooth services.
      */
     //% color=#0082FB weight=96 icon="\uf294" block="HANSHIN: Bluetooth BLE Service"
-declare namespace hsbleservice {
+declare namespace hsble {
 
     /**
      *  Starts the Bluetooth UART service
      */
     //% blockId=startBLEService block="hsbleservice start ble service"
-    //% parts="hsbleservice" advanced=true shim=hsbleservice::startBLEService
+    //% parts="hsble" advanced=true shim=hsble::startBLEService
     function startBLEService(): void;
 
     /**
      * Sends a buffer of data via Bluetooth UART
      */
-    //% shim=hsbleservice::bleWriteBuffer
+    //% shim=hsble::bleWriteBuffer
     function bleWriteBuffer(buffer: Buffer): void;
 
     /**
      * Reads buffered UART data into a buffer
      */
-    //% shim=hsbleservice::bleReadBuffer
+    //% shim=hsble::bleReadBuffer
     function bleReadBuffer(): Buffer;
 
     /**
      * Registers an event to be fired when one of the delimiter is matched.
      * @param delimiters the characters to match received characters against.
      */
-    //% weight=18 blockId=onBLEDataReceived block="on ble data received %delimiters=serial_delimiter_conv" shim=hsbleservice::onBLEDataReceived
+    //% weight=18 blockId=onBLEDataReceived block="on ble data received %delimiters=serial_delimiter_conv"
+    //% parts="hsble" shim=hsble::onBLEDataReceived
     function onBLEDataReceived(delimiters: string, body: () => void): void;
 
     /**
@@ -38,7 +39,7 @@ declare namespace hsbleservice {
      * @param body Code to run when a Bluetooth connection is established
      */
     //% blockId=onBLEConnected block="on ble connected" blockGap=8
-    //% parts="hsbleservice" shim=hsbleservice::onBLEConnected
+    //% parts="hsble" shim=hsble::onBLEConnected
     function onBLEConnected(body: () => void): void;
 
     /**
@@ -46,7 +47,7 @@ declare namespace hsbleservice {
      * @param body Code to run when a Bluetooth connection is lost
      */
     //% blockId=onBLEDisconnected block="on ble disconnected"
-    //% parts="hsbleservice" shim=hsbleservice::onBLEDisconnected
+    //% parts="hsble" shim=hsble::onBLEDisconnected
     function onBLEDisconnected(body: () => void): void;
 }
 
