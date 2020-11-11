@@ -1,22 +1,35 @@
 {
     "name": "hsbleservice",
-    "version": "0.0.0",
-    "description": "",
+    "version": "1.0.1",
+    "description": "HANSHIN bluetooth ble library for microbit",
+    "license": "MIT",
     "dependencies": {
         "core": "*",
-        "radio": "*"
+        "bluetooth": "*"
     },
     "files": [
         "README.md",
-        "main.blocks",
-        "main.ts"
-    ],
-    "testFiles": [
-        "test.ts"
+        "main.ts",
+        "HSMicroBitUARTService.cpp",
+        "HSMicroBitUARTService.h",
+        "hsble.cpp",
+        "shims.d.ts",
+        "enums.d.ts"
     ],
     "public": true,
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "blocksprj"
+    "preferredEditor": "tsprj",
+    "yotta": {
+        "config": {
+            "microbit-dal": {
+                "bluetooth": {
+                    "open": 1,
+                    "whitelist": 0,
+                    "security_level": null
+                }
+            }
+        }
+    }
 }
