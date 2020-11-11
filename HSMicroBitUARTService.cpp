@@ -302,7 +302,7 @@ int HSMicroBitUARTService::send(const uint8_t *buf, int length, MicroBitSerialMo
         if(mode == SYNC_SLEEP)
             fiber_wake_on_event(MICROBIT_ID_NOTIFY, MICROBIT_UART_S_EVT_TX_EMPTY);
 
-        ble.gattServer().nofity(txCharacteristic->getValueAttribute().getHandle(), temp, size);
+        ble.gattServer().notify(txCharacteristic->getValueAttribute().getHandle(), temp, size);
 
         if(mode == SYNC_SLEEP)
             schedule();
