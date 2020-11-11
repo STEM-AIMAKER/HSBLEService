@@ -27,7 +27,7 @@ DEALINGS IN THE SOFTWARE.
 #define HS_MICROBIT_UART_SERVICE_H
 
 #include "mbed.h"
-#include "ble/UUID.h"
+//#include "ble/UUID.h"
 #include "ble/BLE.h"
 #include "MicroBitConfig.h"
 #include "MicroBitSerial.h"
@@ -301,15 +301,6 @@ class HSMicroBitUARTService
     int txBufferedSize();
 };
 
-extern const uint8_t  UARTServiceBaseUUID[UUID::LENGTH_OF_LONG_UUID];
-extern const uint16_t UARTServiceShortUUID;
-extern const uint16_t UARTServiceTXCharacteristicShortUUID;
-extern const uint16_t UARTServiceRXCharacteristicShortUUID;
 
-extern const uint8_t  UARTServiceUUID[UUID::LENGTH_OF_LONG_UUID];
-extern const uint8_t  UARTServiceUUID_reversed[UUID::LENGTH_OF_LONG_UUID];
-
-extern const uint8_t  UARTServiceTXCharacteristicUUID[UUID::LENGTH_OF_LONG_UUID];
-extern const uint8_t  UARTServiceRXCharacteristicUUID[UUID::LENGTH_OF_LONG_UUID];
 
 #endif

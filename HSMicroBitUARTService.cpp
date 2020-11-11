@@ -29,7 +29,7 @@ DEALINGS IN THE SOFTWARE.
   * of an arbitrary number of bytes.
   */
 
-#include "ble/UUID.h"
+//#include "ble/UUID.h"
 
 #include "ExternalEvents.h"
 #include "HSMicroBitUARTService.h"
@@ -41,6 +41,23 @@ static uint8_t txBufferHead = 0;
 static uint8_t txBufferTail = 0;
 
 static GattCharacteristic* txCharacteristic = NULL;
+
+// HSBLE characteristic // {B703296A-6C29-4552-8C1E-AD0B283575B6}
+const uint8_t UARTServiceTXCharacteristicUUID[] = {
+        0xb7, 0x03, 0x29, 0x6a, 0x6c, 0x29, 0x45, 0x52, 
+        0x8c, 0x1e, 0xad, 0x0b, 0x28, 0x35, 0x75, 0xb6
+};
+
+const uint8_t UARTServiceRXCharacteristicUUID[] = {
+        0xb7, 0x03, 0x29, 0x6a, 0x6c, 0x29, 0x45, 0x52, 
+        0x8c, 0x1e, 0xad, 0x0b, 0x28, 0x35, 0x75, 0xb6
+};
+
+// HSBLE service // {FBB2191D-C7C7-4892-97C0-55C8EB4B0D6B}
+const uint8_t UARTServiceUUID[] = {
+        0xfb, 0xb2, 0x19, 0x1d, 0xc7, 0xc7, 0x48, 0x92, 
+        0x97, 0xc0, 0x55, 0xc8, 0xeb, 0x4b, 0x0d, 0xb6
+};
 
 /**
   * A callback function for whenever a Bluetooth device consumes our TX Buffer
