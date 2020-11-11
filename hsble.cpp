@@ -27,13 +27,13 @@ namespace hsbleservice {
     
     //%
     void bleWriteString(String data) {
-        startUartService();
+        startBLEService();
     	uart->send(MSTR(data));
     }    
 
     //%
     String belReadUntil(String del) {
-        startUartService();
+        startBLEService();
         return PSTR(uart->readUntil(MSTR(del)));
     }    
 
@@ -43,7 +43,7 @@ namespace hsbleservice {
     */
     //%
     void bleWriteBuffer(Buffer buffer) {
-        startUartService();
+        startBLEService();
         uart->send(buffer->data, buffer->length);
     }
 
@@ -52,7 +52,7 @@ namespace hsbleservice {
     */
     //%
     Buffer bleReadBuffer() {
-        startUartService();
+        startBLEService();
         int bytes = uart->rxBufferedSize();
         auto buffer = mkBuffer(NULL, bytes);
         int read = uart->read(buffer->data, buffer->length);
@@ -76,7 +76,7 @@ namespace hsbleservice {
     */
     //% weight=18 blockId=onBLEDataReceived block="on ble data received %delimiters=serial_delimiter_conv"
     void onBLEDataReceived(String delimiters, Action body) {
-      startUartService();
+      startBLEService();
       uart->eventOn(MSTR(delimiters));
       registerWithDal(MICROBIT_ID_BLE_UART, MICROBIT_UART_S_EVT_DELIM_MATCH, body);
     }
