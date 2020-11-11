@@ -1,5 +1,5 @@
 // Auto-generated. Do not edit.
-declare namespace hsble {
+declare namespace hsbleservice {
 }
 
 // Auto-generated. Do not edit. Really.
